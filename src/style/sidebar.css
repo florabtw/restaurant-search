@@ -63,11 +63,12 @@
     border-bottom: 1px solid #E6E6E6;
     border-bottom-right-radius: 0.25rem;
     border-right: 1px solid #E6E6E6;
+    flex-shrink: 0;
     height: 100%;
     position: static;
     transition: none;
     vertical-align: top;
-    width: 225px;
+    width: 200px;
   }
 
   .sidebar--show {
@@ -75,7 +76,7 @@
   }
 
   .filter__title {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .filter__option {
