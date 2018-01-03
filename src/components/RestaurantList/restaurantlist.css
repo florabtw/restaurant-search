@@ -4,7 +4,6 @@
 }
 
 .restaurant {
-  line-height: 1.5;
   margin-bottom: 2rem;
 }
 
@@ -13,6 +12,7 @@
 }
 
 .restaurant__image img {
+  border-radius: 0.25rem;
   display: block;
   width: 100%;
 }
@@ -41,4 +41,27 @@
 .restaurant__meta {
   color: #707070;
   font-size: 0.875rem;
+}
+
+@media (min-width: 600px) {
+  .restaurant {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .restaurant__image {
+    flex-shrink: 0;
+    margin-right: 1rem;
+    width: 5rem;
+  }
+
+  .restaurant__body {
+    width: 100%;
+  }
+
+  .restaurant__name {
+    line-height: 1rem;
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+  }
 }

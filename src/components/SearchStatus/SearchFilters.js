@@ -45,7 +45,7 @@ class SearchFilter extends Component {
       return (
         <li key={option.label} class={classnames}>
           <div>{option.label}</div>
-          <div>{option.count}</div>
+          <div class={style['filter__option-label']}>{option.count}</div>
         </li>
       );
     });

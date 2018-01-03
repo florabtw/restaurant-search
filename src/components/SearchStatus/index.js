@@ -30,7 +30,7 @@ class SearchStatus extends Component {
     const { showFilters } = this.state;
 
     return (
-      <div>
+      <div class={style.searchstatus}>
         <SearchFilters show={showFilters} />
         <SearchResults />
         <SettingsButton
