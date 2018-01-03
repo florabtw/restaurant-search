@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import cx from 'classnames';
 
 import SearchFilters from './SearchFilters.js';
+import SearchResults from './SearchResults.js';
 
 import style from './searchstatus.css';
 
@@ -19,7 +20,7 @@ class SearchStatus extends Component {
     this.handleShowFilters = this.handleShowFilters.bind(this);
   }
 
-  handleShowFilters(e) {
+  handleShowFilters() {
     this.setState({
       showFilters: !this.state.showFilters
     });
@@ -28,41 +29,35 @@ class SearchStatus extends Component {
   render() {
     const { showFilters } = this.state;
 
-    const fabClasses = {
-      [style['fab--filter']]: !showFilters,
-      [style['fab--done']]: showFilters
-    };
-
-    const fabClassnames = cx(style.fab, fabClasses);
-
     return (
       <div>
         <SearchFilters show={showFilters} />
         <SearchResults />
-        <button class={fabClassnames} onClick={this.handleShowFilters}>
-          <img
-            src={filterIcon}
-            alt="Show filters"
-            class={style['filter-icon']}
-          />
-          <img src={doneIcon} alt="Done" class={style['done-icon']} />
-        </button>
+        <SettingsButton
+          onClick={this.handleShowFilters}
+          toggled={showFilters}
+        />
       </div>
     );
   }
 }
 
-class SearchResults extends Component {
+class SettingsButton extends Component {
   render() {
+    const { onClick, toggled } = this.props;
+
+    const classes = {
+      [style['fab--filter']]: !toggled,
+      [style['fab--done']]: toggled
+    };
+
+    const classnames = cx(style.fab, classes);
+
     return (
-      <div class="searchresults">
-        <h4>
-          <strong>34 results found</strong> in 0.002 seconds
-        </h4>
-        <div class="searchresult">
-          <h2>Anchor and Hope</h2>
-        </div>
-      </div>
+      <button class={classnames} onClick={onClick}>
+        <img src={filterIcon} alt="Show filters" class={style['filter-icon']} />
+        <img src={doneIcon} alt="Done" class={style['done-icon']} />
+      </button>
     );
   }
 }
