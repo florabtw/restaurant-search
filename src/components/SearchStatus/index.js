@@ -30,7 +30,7 @@ class SearchStatus extends Component {
     const { showFilters } = this.state;
 
     return (
-      <div class={style.searchstatus}>
+      <div id={style.searchstatus}>
         <SearchFilters show={showFilters} />
         <SearchResults />
         <SettingsButton
@@ -47,16 +47,16 @@ class SettingsButton extends Component {
     const { onClick, toggled } = this.props;
 
     const classes = {
-      [style['fab--filter']]: !toggled,
-      [style['fab--done']]: toggled
+      'fab--filter': !toggled,
+      'fab--done': toggled
     };
 
-    const classnames = cx(style.fab, classes);
+    const classnames = cx('fab', classes);
 
     return (
       <button class={classnames} onClick={onClick}>
-        <img src={filterIcon} alt="Show filters" class={style['filter-icon']} />
-        <img src={doneIcon} alt="Done" class={style['done-icon']} />
+        <img src={filterIcon} alt="Show filters" class="filter-icon" />
+        <img src={doneIcon} alt="Done" class="done-icon" />
       </button>
     );
   }

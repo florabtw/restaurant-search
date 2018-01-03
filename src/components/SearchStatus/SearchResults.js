@@ -28,12 +28,12 @@ const restaurants = [
 class SearchResults extends Component {
   render() {
     return (
-      <div class={style.searchresults}>
-        <h4 class={style.infoline}>
-          <span class={style.infoline__text}>
+      <div id={style.searchresults}>
+        <h4 class="infoline">
+          <span class="infoline__text">
             <strong>34 results found</strong> in 0.002 seconds
           </span>
-          <span class={style.infoline__underline} />
+          <span class="infoline__underline" />
         </h4>
         <RestaurantList restaurants={restaurants} />
       </div>

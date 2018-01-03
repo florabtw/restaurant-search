@@ -1,50 +1,6 @@
-.fab {
-  box-shadow:
-    0px 3px 6px rgba(0, 0, 0, 0.16),
-    0px 3px 6px rgba(0, 0, 0, 0.23);
-  border: none;
-  border-radius: 50%;
-  bottom: 1.5rem;
-  cursor: pointer;
-  height: 3.5rem;
-  position: fixed;
-  width: 3.5rem;
-  right: 1.5rem;
-}
-
-.fab:focus {
-  outline: none;
-}
-
-.fab img {
-  display: none;
-  height: 1.5rem;
-  vertical-align: middle;
-}
-
-.fab--filter {
-  background: #2897C5;
-}
-
-.fab--filter .filter-icon {
-  display: inline-block;
-}
-
-.fab--done {
-  background: #009A3E;
-}
-
-.fab--done .done-icon {
-  display: inline-block;
-}
-
 @media (min-width: 600px) {
-  .searchstatus {
+  #searchstatus {
     display: flex;
     height: 100%;
-  }
-
-  .fab {
-    display: none;
   }
 }

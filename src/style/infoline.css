@@ -1,0 +1,23 @@
+.infoline {
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.infoline__text {
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+.infoline__text strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.infoline__underline {
+  border-bottom: 1px solid #E6E6E6;
+  display: inline-block;
+  width: 100%;
+}

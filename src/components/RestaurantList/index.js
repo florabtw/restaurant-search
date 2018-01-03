@@ -2,8 +2,6 @@ import { h, Component } from 'preact';
 
 import Stars from '../Stars';
 
-import style from './restaurantlist.css';
-
 class RestaurantList extends Component {
   render() {
     const { restaurants } = this.props;
@@ -12,7 +10,7 @@ class RestaurantList extends Component {
       return <Restaurant key={restaurant.id} {...restaurant} />;
     });
 
-    return <ul class={style.restaurants}>{$restaurants}</ul>;
+    return <ul class="restaurants">{$restaurants}</ul>;
   }
 }
 
@@ -29,14 +27,14 @@ class Restaurant extends Component {
     } = this.props;
 
     return (
-      <div class={style.restaurant}>
-        <div class={style.restaurant__image}>
+      <div class="restaurant">
+        <div class="restaurant__image">
           <img src={image} />
         </div>
-        <div class={style.restaurant__body}>
-          <h2 class={style.restaurant__name}>{name}</h2>
+        <div class="restaurant__body">
+          <h2 class="restaurant__name">{name}</h2>
           <Rating rating={rating} reviews={reviews} />
-          <div class={style.restaurant__meta}>
+          <div class="restaurant__meta">
             {cuisine} | {location} | {pricing}
           </div>
         </div>
@@ -50,10 +48,10 @@ class Rating extends Component {
     const { rating, reviews } = this.props;
 
     return (
-      <div class={style.rating}>
-        <span class={style.rating__value}>{rating}</span>
+      <div class="rating">
+        <span class="rating__value">{rating}</span>
         <Stars rating={rating} />
-        <span class={style.rating__reviews}>({reviews} reviews)</span>
+        <span class="rating__reviews">({reviews} reviews)</span>
       </div>
     );
   }

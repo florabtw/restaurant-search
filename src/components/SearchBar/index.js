@@ -9,7 +9,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div class={style.searchbar}>
+      <div id={style.searchbar}>
         <h1 style="display: none;">
           Search for Restaurants by Name, Cuisine, Location
         </h1>

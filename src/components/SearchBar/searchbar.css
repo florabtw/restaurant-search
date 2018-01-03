@@ -1,9 +1,9 @@
-.searchbar {
+#searchbar {
   background: #1C688E;
   padding: 1.5rem;
 }
 
-.searchbar input {
+#searchbar input {
   font-size: 0.75rem;
   line-height: 1.5;
   min-height: 2.5rem;
