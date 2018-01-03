@@ -17,13 +17,13 @@ class RestaurantList extends Component {
 class Restaurant extends Component {
   render() {
     const {
-      name,
-      rating,
-      reviews,
       cuisine,
-      location,
-      pricing,
-      image
+      image,
+      neighborhood,
+      name,
+      prices,
+      rating,
+      reviews
     } = this.props;
 
     return (
@@ -35,7 +35,7 @@ class Restaurant extends Component {
           <h2 class="restaurant__name">{name}</h2>
           <Rating rating={rating} reviews={reviews} />
           <div class="restaurant__meta">
-            {cuisine} | {location} | {pricing}
+            {cuisine} | {neighborhood} | {prices}
           </div>
         </div>
       </div>

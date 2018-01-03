@@ -28,11 +28,12 @@ class SearchStatus extends Component {
 
   render() {
     const { showFilters } = this.state;
+    const { search, results } = this.props;
 
     return (
       <div id={style.searchstatus}>
         <SearchFilters show={showFilters} />
-        <SearchResults />
+        <SearchResults results={results} />
         <SettingsButton
           onClick={this.handleShowFilters}
           toggled={showFilters}
