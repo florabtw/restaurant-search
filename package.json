@@ -18,6 +18,7 @@
     "prettier": "^1.9.2"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0"
   }
