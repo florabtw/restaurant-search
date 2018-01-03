@@ -1,0 +1,44 @@
+.restaurants {
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.restaurant {
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.restaurant:last-child {
+  margin-bottom: 0;
+}
+
+.restaurant__image img {
+  display: block;
+  width: 100%;
+}
+
+.restaurant__name {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.rating {
+  color: #707070;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.rating__value {
+  display: inline-block;
+  color: #FFAB66;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.rating__reviews {
+  margin-left: 0.5rem;
+}
+
+.restaurant__meta {
+  color: #707070;
+  font-size: 0.875rem;
+}

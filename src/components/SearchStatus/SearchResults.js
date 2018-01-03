@@ -1,15 +1,41 @@
 import { h, Component } from 'preact';
 
+import RestaurantList from '../RestaurantList';
+
+import style from './searchresults.css';
+
+const restaurants = [
+  {
+    name: 'Anchor and Hope',
+    rating: 4.2,
+    reviews: 1897,
+    cuisine: 'American & Seafood',
+    location: 'SOMA',
+    pricing: '$31 to $51',
+    image: 'https://www.opentable.com/img/restimages/101422.jpg'
+  },
+  {
+    name: 'Bluestem Brasserie',
+    rating: 3.5,
+    reviews: 1123,
+    cuisine: 'American',
+    location: 'Downtown / Union Square',
+    pricing: '$31 to $50',
+    image: 'https://www.opentable.com/img/restimages/37393.jpg'
+  }
+];
+
 class SearchResults extends Component {
   render() {
     return (
-      <div class="searchresults">
-        <h4>
-          <strong>34 results found</strong> in 0.002 seconds
+      <div class={style.searchresults}>
+        <h4 class={style.infoline}>
+          <span class={style.infoline__text}>
+            <strong>34 results found</strong> in 0.002 seconds
+          </span>
+          <span class={style.infoline__underline} />
         </h4>
-        <div class="searchresult">
-          <h2>Anchor and Hope</h2>
-        </div>
+        <RestaurantList restaurants={restaurants} />
       </div>
     );
   }
