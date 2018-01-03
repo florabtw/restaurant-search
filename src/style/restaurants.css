@@ -50,8 +50,11 @@
   }
 
   .restaurant__image {
+    border-radius: 0.25rem;
     flex-shrink: 0;
+    height: 5rem;
     margin-right: 1rem;
+    overflow: hidden;
     width: 5rem;
   }
 
