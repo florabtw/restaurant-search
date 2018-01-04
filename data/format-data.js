@@ -31,7 +31,7 @@ function createRestaurant(line) {
     cuisine: line[1],
     objectID: line[0],
     image: opentableData.image_url,
-    location: opentableData._geoloc,
+    _geoloc: opentableData._geoloc,
     name: opentableData.name,
     neighborhood: line[4],
     paymentOptions: [...new Set(paymentOptions)],
