@@ -8912,13 +8912,6 @@ module.exports = __webpack_require__("HIUO");
 
 /***/ }),
 
-/***/ "JPUE":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "JkW7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9471,9 +9464,11 @@ var SearchResults_SearchResults = function (_Component) {
 
   SearchResults.prototype.render = function render() {
     var _props = this.props,
-        results = _props.results,
+        hitCount = _props.hitCount,
+        onShowMoreClick = _props.onShowMoreClick,
         queryTime = _props.queryTime,
-        hitCount = _props.hitCount;
+        results = _props.results,
+        showMore = _props.showMore;
 
 
     var seconds = toSeconds(queryTime);
@@ -9499,7 +9494,12 @@ var SearchResults_SearchResults = function (_Component) {
         ),
         SearchResults__ref
       ),
-      Object(preact_min["h"])(components_RestaurantList, { restaurants: results })
+      Object(preact_min["h"])(components_RestaurantList, { restaurants: results }),
+      showMore && Object(preact_min["h"])(
+        'button',
+        { 'class': 'button', onClick: onShowMoreClick },
+        'Show More'
+      )
     );
   };
 
@@ -9573,9 +9573,10 @@ var SearchStatus_SearchStatus = function (_Component) {
         hitCount = _props.hitCount,
         onFacetClick = _props.onFacetClick,
         onNumericFilterClick = _props.onNumericFilterClick,
+        onShowMoreClick = _props.onShowMoreClick,
         queryTime = _props.queryTime,
         results = _props.results,
-        search = _props.search;
+        showMore = _props.showMore;
 
 
     return Object(preact_min["h"])(
@@ -9589,9 +9590,11 @@ var SearchStatus_SearchStatus = function (_Component) {
         onNumericFilterClick: onNumericFilterClick
       }),
       Object(preact_min["h"])(SearchStatus_SearchResults, {
+        hitCount: hitCount,
+        onShowMoreClick: onShowMoreClick,
         results: results,
         queryTime: queryTime,
-        hitCount: hitCount
+        showMore: showMore
       }),
       Object(preact_min["h"])(SearchStatus_SettingsButton, {
         onClick: this.handleShowFilters,
@@ -9697,35 +9700,44 @@ var app_App = function (_Component) {
       hitCount: 0,
       results: [],
       query: '',
-      queryTime: 0
+      queryTime: 0,
+      showMore: true
     };
 
     _this.handleInputChange = _this.handleInputChange.bind(_this);
     _this.handleNumericFilterClick = _this.handleNumericFilterClick.bind(_this);
+    _this.handleShowMoreClick = _this.handleShowMoreClick.bind(_this);
+    _this.handleSearchResult = _this.handleSearchResult.bind(_this);
     return _this;
   }
 
   App.prototype.componentDidMount = function componentDidMount() {
-    var _this2 = this;
-
-    restaurantIndex.on('result', function (content) {
-      var cuisines = content.getFacetValues('cuisine');
-      var payments = content.getFacetValues('paymentOptions');
-
-      _this2.setState({
-        facets: {
-          cuisine: cuisines,
-          payments: payments
-        },
-        hitCount: content.nbHits,
-        results: content.hits,
-        queryTime: content.processingTimeMS
-      });
-    });
+    restaurantIndex.on('result', this.handleSearchResult);
 
     restaurantIndex.setQueryParameter('maxValuesPerFacet', 5);
     restaurantIndex.setQueryParameter('hitsPerPage', 3);
     restaurantIndex.search();
+  };
+
+  App.prototype.handleSearchResult = function handleSearchResult(content) {
+    var cuisines = content.getFacetValues('cuisine');
+    var payments = content.getFacetValues('paymentOptions');
+
+    var results = this.state.results;
+
+
+    var nextResults = content.page > 0 ? results.concat(content.hits) : content.hits;
+
+    this.setState({
+      facets: {
+        cuisine: cuisines,
+        payments: payments
+      },
+      hitCount: content.nbHits,
+      queryTime: content.processingTimeMS,
+      results: nextResults,
+      showMore: content.page < content.nbPages - 1
+    });
   };
 
   App.prototype.handleNumericFilterClick = function handleNumericFilterClick(name, value) {
@@ -9762,14 +9774,20 @@ var app_App = function (_Component) {
     restaurantIndex.search();
   };
 
+  App.prototype.handleShowMoreClick = function handleShowMoreClick() {
+    restaurantIndex.nextPage();
+    restaurantIndex.search();
+  };
+
   App.prototype.render = function render() {
     var _state = this.state,
-        query = _state.query,
-        results = _state.results,
         facets = _state.facets,
-        queryTime = _state.queryTime,
+        filters = _state.filters,
         hitCount = _state.hitCount,
-        filters = _state.filters;
+        query = _state.query,
+        queryTime = _state.queryTime,
+        results = _state.results,
+        showMore = _state.showMore;
 
 
     return Object(preact_min["h"])(
@@ -9785,8 +9803,10 @@ var app_App = function (_Component) {
           hitCount: hitCount,
           onFacetClick: this.handleFacetClick,
           onNumericFilterClick: this.handleNumericFilterClick,
+          onShowMoreClick: this.handleShowMoreClick,
           queryTime: queryTime,
-          results: results
+          results: results,
+          showMore: showMore
         })
       )
     );
@@ -9804,9 +9824,9 @@ var sidebar_default = /*#__PURE__*/__webpack_require__.n(sidebar);
 var style_restaurants = __webpack_require__("dRA2");
 var restaurants_default = /*#__PURE__*/__webpack_require__.n(style_restaurants);
 
-// EXTERNAL MODULE: ./style/fab.css
-var fab = __webpack_require__("JPUE");
-var fab_default = /*#__PURE__*/__webpack_require__.n(fab);
+// EXTERNAL MODULE: ./style/buttons.css
+var buttons = __webpack_require__("eRa2");
+var buttons_default = /*#__PURE__*/__webpack_require__.n(buttons);
 
 // EXTERNAL MODULE: ./style/infoline.css
 var infoline = __webpack_require__("10un");
@@ -17684,6 +17704,13 @@ function baseAssign(object, source) {
 }
 
 module.exports = baseAssign;
+
+/***/ }),
+
+/***/ "eRa2":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
