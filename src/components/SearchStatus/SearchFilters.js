@@ -27,6 +27,12 @@ class SearchFilters extends Component {
           onClick={onNumericFilterClick}
           selected={filters.rating}
         />
+        <SearchFilter
+          facet="paymentOptions"
+          onClick={onFacetClick}
+          options={facets.payments}
+          title="Payment Options"
+        />
       </div>
     );
   }

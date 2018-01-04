@@ -11,7 +11,8 @@ class App extends Component {
 
     this.state = {
       facets: {
-        cuisine: []
+        cuisine: [],
+        payments: []
       },
       filters: {
         rating: 0
@@ -29,10 +30,12 @@ class App extends Component {
   componentDidMount() {
     restaurantIndex.on('result', content => {
       const cuisines = content.getFacetValues('cuisine');
+      const payments = content.getFacetValues('paymentOptions');
 
       this.setState({
         facets: {
-          cuisine: cuisines
+          cuisine: cuisines,
+          payments: payments
         },
         hitCount: content.nbHits,
         results: content.hits,
