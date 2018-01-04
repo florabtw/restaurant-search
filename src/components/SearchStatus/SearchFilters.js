@@ -148,7 +148,7 @@ class RatingOption extends Component {
     const classnames = cx('filter__option', classes);
 
     return (
-      <li key={name} class={classnames} onClick={this.handleClick}>
+      <li key={value} class={classnames} onClick={this.handleClick}>
         <Stars rating={value} />
       </li>
     );
