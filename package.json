@@ -21,6 +21,7 @@
     "algoliasearch": "^3.24.9",
     "algoliasearch-helper": "^2.23.2",
     "classnames": "^2.2.5",
+    "places.js": "^1.4.18",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0"
   }

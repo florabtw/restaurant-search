@@ -58,6 +58,13 @@
   color: white;
 }
 
+.filter__input {
+  font-size: 14px;
+  height: auto;
+  line-height: 2;
+  padding-left: 0.5rem;
+}
+
 @media (min-width: 600px) {
   .sidebar {
     display: inline-block;
@@ -82,5 +89,9 @@
 
   .filter__option {
     font-size: 0.875rem;
+  }
+
+  .ap-dropdown-menu {
+    width: 500px;
   }
 }

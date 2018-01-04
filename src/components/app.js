@@ -43,6 +43,7 @@ class App extends Component {
 
     restaurantIndex
       .setQueryParameter('aroundPrecision', 200)
+      .setQueryParameter('aroundRadius', 300000)
       .setQueryParameter('maxValuesPerFacet', 5)
       .setQueryParameter('hitsPerPage', 3)
       .search();
@@ -94,6 +95,14 @@ class App extends Component {
     restaurantIndex.toggleFacetRefinement(facet, option).search();
   }
 
+  handleLocationChange(geoloc) {
+    const { lat, lng } = geoloc;
+
+    restaurantIndex
+      .setQueryParameter('aroundLatLng', `${lat}, ${lng}`)
+      .search();
+  }
+
   handleInputChange(input) {
     this.setState({ query: input });
 
@@ -123,6 +132,7 @@ class App extends Component {
             facets={facets}
             filters={filters}
             hitCount={hitCount}
+            onLocationChange={this.handleLocationChange}
             onFacetClick={this.handleFacetClick}
             onNumericFilterClick={this.handleNumericFilterClick}
             onShowMoreClick={this.handleShowMoreClick}

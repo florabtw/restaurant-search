@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import cx from 'classnames';
 
 import Stars from '../Stars/';
+import LocationInput from '../LocationInput';
 
 class SearchFilters extends Component {
   render() {
@@ -10,6 +11,7 @@ class SearchFilters extends Component {
       facets,
       filters,
       onFacetClick,
+      onLocationChange,
       onNumericFilterClick
     } = this.props;
 
@@ -17,6 +19,7 @@ class SearchFilters extends Component {
 
     return (
       <div class={cx('sidebar', classes)}>
+        <LocationInput onLocationChange={onLocationChange} />
         <SearchFilter
           facet="cuisine"
           onClick={onFacetClick}

@@ -34,6 +34,7 @@ class SearchStatus extends Component {
       filters,
       hitCount,
       onFacetClick,
+      onLocationChange,
       onNumericFilterClick,
       onShowMoreClick,
       queryTime,
@@ -47,6 +48,7 @@ class SearchStatus extends Component {
           show={showFilters}
           facets={facets}
           filters={filters}
+          onLocationChange={onLocationChange}
           onFacetClick={onFacetClick}
           onNumericFilterClick={onNumericFilterClick}
         />
