@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
 
-import places from 'places.js';
-
 class LocationInput extends Component {
   componentDidMount() {
+    const places = require('places.js');
+
     const autocomplete = places({
       container: document.querySelector('#places')
     });
