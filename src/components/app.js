@@ -45,7 +45,7 @@ class App extends Component {
       .setQueryParameter('aroundPrecision', 200)
       .setQueryParameter('aroundRadius', 300000)
       .setQueryParameter('maxValuesPerFacet', 5)
-      .setQueryParameter('hitsPerPage', 3)
+      .setQueryParameter('hitsPerPage', 5)
       .search();
   }
 
