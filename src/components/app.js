@@ -33,9 +33,19 @@ class App extends Component {
   componentDidMount() {
     restaurantIndex.on('result', this.handleSearchResult);
 
-    restaurantIndex.setQueryParameter('maxValuesPerFacet', 5);
-    restaurantIndex.setQueryParameter('hitsPerPage', 3);
-    restaurantIndex.search();
+    window.navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+
+      restaurantIndex
+        .setQueryParameter('aroundLatLng', `${latitude}, ${longitude}`)
+        .search();
+    });
+
+    restaurantIndex
+      .setQueryParameter('aroundPrecision', 200)
+      .setQueryParameter('maxValuesPerFacet', 5)
+      .setQueryParameter('hitsPerPage', 3)
+      .search();
   }
 
   handleSearchResult(content) {
@@ -81,20 +91,17 @@ class App extends Component {
   }
 
   handleFacetClick(facet, option) {
-    restaurantIndex.toggleFacetRefinement(facet, option);
-    restaurantIndex.search();
+    restaurantIndex.toggleFacetRefinement(facet, option).search();
   }
 
   handleInputChange(input) {
     this.setState({ query: input });
 
-    restaurantIndex.setQuery(input);
-    restaurantIndex.search();
+    restaurantIndex.setQuery(input).search();
   }
 
   handleShowMoreClick() {
-    restaurantIndex.nextPage();
-    restaurantIndex.search();
+    restaurantIndex.nextPage().search();
   }
 
   render() {
