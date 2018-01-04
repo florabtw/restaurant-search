@@ -43,6 +43,7 @@
   border: 1px solid #E6E6E6;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.875rem;
