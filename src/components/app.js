@@ -13,6 +13,9 @@ class App extends Component {
       facets: {
         cuisine: []
       },
+      filters: {
+        rating: 0
+      },
       hitCount: 0,
       results: [],
       query: '',
@@ -20,6 +23,7 @@ class App extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleNumericFilterClick = this.handleNumericFilterClick.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +45,27 @@ class App extends Component {
     restaurantIndex.search();
   }
 
+  handleNumericFilterClick(name, value) {
+    const refinement = restaurantIndex.getNumericRefinement(name, '>=');
+
+    restaurantIndex.removeNumericRefinement(name);
+
+    let nextValue = 0;
+    if (typeof refinement === 'undefined' || refinement[0] !== value) {
+      restaurantIndex.addNumericRefinement(name, '>=', value);
+      nextValue = value;
+    }
+
+    this.setState(state => ({
+      filters: {
+        ...state.filters,
+        [name]: nextValue
+      }
+    }));
+
+    restaurantIndex.search();
+  }
+
   handleFacetClick(facet, option) {
     restaurantIndex.toggleFacetRefinement(facet, option);
     restaurantIndex.search();
@@ -54,19 +79,20 @@ class App extends Component {
   }
 
   render() {
-    const { query, results, facets, queryTime, hitCount } = this.state;
+    const { query, results, facets, queryTime, hitCount, filters } = this.state;
 
     return (
       <div id="app">
         <div class="page">
           <SearchBar query={query} onChange={this.handleInputChange} />
           <SearchStatus
-            results={results}
             facets={facets}
+            filters={filters}
             hitCount={hitCount}
-            onFilterChange={this.handleFilterChange}
             onFacetClick={this.handleFacetClick}
+            onNumericFilterClick={this.handleNumericFilterClick}
             queryTime={queryTime}
+            results={results}
           />
         </div>
       </div>
