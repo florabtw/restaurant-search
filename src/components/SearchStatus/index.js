@@ -1,8 +1,8 @@
 import { h, Component } from 'preact';
 import cx from 'classnames';
 
-import SearchFilters from './SearchFilters.js';
-import SearchResults from './SearchResults.js';
+import SearchFilters from '../SearchFilters';
+import SearchResults from '../SearchResults';
 
 import style from './searchstatus.css';
 
