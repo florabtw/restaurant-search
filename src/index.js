@@ -5,7 +5,7 @@ import './style/index.css';
 import './style/sidebar.css';
 
 import './style/restaurants.css';
-import './style/fab.css';
+import './style/buttons.css';
 import './style/infoline.css';
 import './style/stars.css';
 

@@ -20,32 +20,43 @@ class App extends Component {
       hitCount: 0,
       results: [],
       query: '',
-      queryTime: 0
+      queryTime: 0,
+      showMore: true
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleNumericFilterClick = this.handleNumericFilterClick.bind(this);
+    this.handleShowMoreClick = this.handleShowMoreClick.bind(this);
+    this.handleSearchResult = this.handleSearchResult.bind(this);
   }
 
   componentDidMount() {
-    restaurantIndex.on('result', content => {
-      const cuisines = content.getFacetValues('cuisine');
-      const payments = content.getFacetValues('paymentOptions');
-
-      this.setState({
-        facets: {
-          cuisine: cuisines,
-          payments: payments
-        },
-        hitCount: content.nbHits,
-        results: content.hits,
-        queryTime: content.processingTimeMS
-      });
-    });
+    restaurantIndex.on('result', this.handleSearchResult);
 
     restaurantIndex.setQueryParameter('maxValuesPerFacet', 5);
     restaurantIndex.setQueryParameter('hitsPerPage', 3);
     restaurantIndex.search();
+  }
+
+  handleSearchResult(content) {
+    const cuisines = content.getFacetValues('cuisine');
+    const payments = content.getFacetValues('paymentOptions');
+
+    const { results } = this.state;
+
+    const nextResults =
+      content.page > 0 ? results.concat(content.hits) : content.hits;
+
+    this.setState({
+      facets: {
+        cuisine: cuisines,
+        payments: payments
+      },
+      hitCount: content.nbHits,
+      queryTime: content.processingTimeMS,
+      results: nextResults,
+      showMore: content.page < content.nbPages - 1
+    });
   }
 
   handleNumericFilterClick(name, value) {
@@ -81,8 +92,21 @@ class App extends Component {
     restaurantIndex.search();
   }
 
+  handleShowMoreClick() {
+    restaurantIndex.nextPage();
+    restaurantIndex.search();
+  }
+
   render() {
-    const { query, results, facets, queryTime, hitCount, filters } = this.state;
+    const {
+      facets,
+      filters,
+      hitCount,
+      query,
+      queryTime,
+      results,
+      showMore
+    } = this.state;
 
     return (
       <div id="app">
@@ -94,8 +118,10 @@ class App extends Component {
             hitCount={hitCount}
             onFacetClick={this.handleFacetClick}
             onNumericFilterClick={this.handleNumericFilterClick}
+            onShowMoreClick={this.handleShowMoreClick}
             queryTime={queryTime}
             results={results}
+            showMore={showMore}
           />
         </div>
       </div>

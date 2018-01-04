@@ -6,7 +6,13 @@ import style from './searchresults.css';
 
 class SearchResults extends Component {
   render() {
-    const { results, queryTime, hitCount } = this.props;
+    const {
+      hitCount,
+      onShowMoreClick,
+      queryTime,
+      results,
+      showMore
+    } = this.props;
 
     const seconds = toSeconds(queryTime);
 
@@ -19,6 +25,11 @@ class SearchResults extends Component {
           <span class="infoline__underline" />
         </h4>
         <RestaurantList restaurants={results} />
+        {showMore && (
+          <button class="button" onClick={onShowMoreClick}>
+            Show More
+          </button>
+        )}
       </div>
     );
   }

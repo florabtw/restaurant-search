@@ -35,9 +35,10 @@ class SearchStatus extends Component {
       hitCount,
       onFacetClick,
       onNumericFilterClick,
+      onShowMoreClick,
       queryTime,
       results,
-      search
+      showMore
     } = this.props;
 
     return (
@@ -50,9 +51,11 @@ class SearchStatus extends Component {
           onNumericFilterClick={onNumericFilterClick}
         />
         <SearchResults
+          hitCount={hitCount}
+          onShowMoreClick={onShowMoreClick}
           results={results}
           queryTime={queryTime}
-          hitCount={hitCount}
+          showMore={showMore}
         />
         <SettingsButton
           onClick={this.handleShowFilters}
