@@ -16,7 +16,7 @@ html, body {
 
 @media (min-width: 960px) {
   #app {
-    background: url('/assets/background.png');
+    background: url('assets/background.png');
     padding: 5rem 0;
   }
 
