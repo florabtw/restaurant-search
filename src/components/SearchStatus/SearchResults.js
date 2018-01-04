@@ -6,13 +6,15 @@ import style from './searchresults.css';
 
 class SearchResults extends Component {
   render() {
-    const { results } = this.props;
+    const { results, queryTime, hitCount } = this.props;
+
+    const seconds = toSeconds(queryTime);
 
     return (
       <div id={style.searchresults}>
         <h4 class="infoline">
           <span class="infoline__text">
-            <strong>34 results found</strong> in 0.002 seconds
+            <strong>{hitCount} results found</strong> in {seconds} seconds
           </span>
           <span class="infoline__underline" />
         </h4>
@@ -20,6 +22,10 @@ class SearchResults extends Component {
       </div>
     );
   }
+}
+
+function toSeconds(millis) {
+  return (millis / 1000).toFixed(3);
 }
 
 export default SearchResults;

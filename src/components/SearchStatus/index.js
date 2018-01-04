@@ -28,7 +28,15 @@ class SearchStatus extends Component {
 
   render() {
     const { showFilters } = this.state;
-    const { search, results, facets, onFacetClick } = this.props;
+
+    const {
+      search,
+      results,
+      facets,
+      hitCount,
+      queryTime,
+      onFacetClick
+    } = this.props;
 
     return (
       <div id={style.searchstatus}>
@@ -37,7 +45,11 @@ class SearchStatus extends Component {
           facets={facets}
           onFacetClick={onFacetClick}
         />
-        <SearchResults results={results} />
+        <SearchResults
+          results={results}
+          queryTime={queryTime}
+          hitCount={hitCount}
+        />
         <SettingsButton
           onClick={this.handleShowFilters}
           toggled={showFilters}

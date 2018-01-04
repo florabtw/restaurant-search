@@ -13,8 +13,10 @@ class App extends Component {
       facets: {
         cuisine: []
       },
+      hitCount: 0,
       results: [],
-      query: ''
+      query: '',
+      queryTime: 0
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,10 +27,12 @@ class App extends Component {
       const cuisines = content.getFacetValues('cuisine');
 
       this.setState({
-        results: content.hits,
         facets: {
           cuisine: cuisines
-        }
+        },
+        hitCount: content.nbHits,
+        results: content.hits,
+        queryTime: content.processingTimeMS
       });
     });
 
@@ -50,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const { query, results, facets } = this.state;
+    const { query, results, facets, queryTime, hitCount } = this.state;
 
     return (
       <div id="app">
@@ -59,8 +63,10 @@ class App extends Component {
           <SearchStatus
             results={results}
             facets={facets}
+            hitCount={hitCount}
             onFilterChange={this.handleFilterChange}
             onFacetClick={this.handleFacetClick}
+            queryTime={queryTime}
           />
         </div>
       </div>
