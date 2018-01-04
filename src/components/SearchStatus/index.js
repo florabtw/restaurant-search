@@ -28,11 +28,15 @@ class SearchStatus extends Component {
 
   render() {
     const { showFilters } = this.state;
-    const { search, results } = this.props;
+    const { search, results, facets, onFacetClick } = this.props;
 
     return (
       <div id={style.searchstatus}>
-        <SearchFilters show={showFilters} />
+        <SearchFilters
+          show={showFilters}
+          facets={facets}
+          onFacetClick={onFacetClick}
+        />
         <SearchResults results={results} />
         <SettingsButton
           onClick={this.handleShowFilters}

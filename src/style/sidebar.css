@@ -36,6 +36,7 @@
 }
 
 .filter__option {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   line-height: 1.3;

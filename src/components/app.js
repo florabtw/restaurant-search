@@ -10,6 +10,9 @@ class App extends Component {
     super();
 
     this.state = {
+      facets: {
+        cuisine: []
+      },
       results: [],
       query: ''
     };
@@ -19,8 +22,24 @@ class App extends Component {
 
   componentDidMount() {
     restaurantIndex.on('result', content => {
-      this.setState({ results: content.hits });
+      const cuisines = content.getFacetValues('cuisine');
+
+      this.setState({
+        results: content.hits,
+        facets: {
+          cuisine: cuisines
+        }
+      });
     });
+
+    restaurantIndex.setQueryParameter('maxValuesPerFacet', 5);
+    restaurantIndex.setQueryParameter('hitsPerPage', 3);
+    restaurantIndex.search();
+  }
+
+  handleFacetClick(facet, option) {
+    restaurantIndex.toggleFacetRefinement(facet, option);
+    restaurantIndex.search();
   }
 
   handleInputChange(input) {
@@ -31,13 +50,18 @@ class App extends Component {
   }
 
   render() {
-    const { query, results } = this.state;
+    const { query, results, facets } = this.state;
 
     return (
       <div id="app">
         <div class="page">
           <SearchBar query={query} onChange={this.handleInputChange} />
-          <SearchStatus results={results} />
+          <SearchStatus
+            results={results}
+            facets={facets}
+            onFilterChange={this.handleFilterChange}
+            onFacetClick={this.handleFacetClick}
+          />
         </div>
       </div>
     );
