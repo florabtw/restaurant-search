@@ -51,7 +51,7 @@ function isValidPayment(payment) {
   return (
     payment === 'AMEX' ||
     payment === 'Discover' ||
-    payment === 'Mastercard' ||
+    payment === 'MasterCard' ||
     payment === 'Visa'
   );
 }
